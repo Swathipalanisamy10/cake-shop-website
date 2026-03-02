@@ -68,3 +68,26 @@ function showOnScroll() {
 window.addEventListener("scroll", showOnScroll);
 window.addEventListener("load", showOnScroll);
 
+const form = document.getElementById("contactForm");
+
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const newMessage = { name, email, message };
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+    messages.push(newMessage);
+
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    alert("Message saved successfully 💌");
+
+    form.reset();
+  });
+}
