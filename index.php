@@ -429,35 +429,3 @@ $conn->close();
 
 </body>
 </html> 
-<?php
-include "db.php";
-
-// print_r($_POST);exit;
-
-if(isset($_POST['submit'])) {
-
-$name = $_POST['name'] ?? '';
-$email = $_POST['email'] ?? '';
-$message = $_POST['message'] ?? '';
-
-$cdate = date("Y-m-d H:i:s");
-$mdate = $cdate;
-
-$cip = $_SERVER['REMOTE_ADDR'];
-$mip = $cip;
-
-$sql = "INSERT INTO message (`name`, `email`, `message`, `cdate`, `cip`, `mdate`, `mip`)
-        VALUES ('$name', '$email', '$message', '$cdate', '$cip', '$mdate', '$mip')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "<script>
-            alert('Message saved successfully 💌');
-            window.location.href='index.php#Contact';
-          </script>";
-} else {
-    echo "Error: " . $conn->error;
-}
-
-$conn->close();
-}
-?>
