@@ -428,3 +428,433 @@ $conn->close();
 
 </body>
 </html> 
+<?php
+include "db.php";
+
+// print_r($_POST);exit;
+
+if(isset($_POST['submit'])) {
+
+$name = $_POST['name'] ?? '';
+$email = $_POST['email'] ?? '';
+$message = $_POST['message'] ?? '';
+
+$cdate = date("Y-m-d H:i:s");
+$mdate = $cdate;
+
+$cip = $_SERVER['REMOTE_ADDR'];
+$mip = $cip;
+
+$sql = "INSERT INTO message (`name`, `email`, `message`, `cdate`, `cip`, `mdate`, `mip`)
+        VALUES ('$name', '$email', '$message', '$cdate', '$cip', '$mdate', '$mip')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+            alert('Message saved successfully 💌');
+            window.location.href='index.php#Contact';
+          </script>";
+} else {
+    echo "Error: " . $conn->error;
+}
+
+$conn->close();
+}
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Shop</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h1 class="logo-text">🎂Cake Shop</h1>
+                <h2 class="tagline">Baked with Love💗</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#Our-Story">Our Story</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#Gallery">Gallery</a></li>
+                <li><a href="#Love-at-First-Bite">Love at First Bite</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </nav>
+    </header>
+
+  
+
+    <section class="cake animate" id="Home">
+    <div class="cake-content">
+        <h2>Welcome to a world where sweetness feels like home💕</h2>
+        <p>
+            Crafted fresh for moments that matter,
+            where every slice tells a story of celebration and sweetness.
+            Baked with love, layered with care, and finished with a touch of magic.
+            From quiet cravings to grand celebrations, we make every moment feel special.
+            Each bite is a little pause, a little joy, a little love.
+            Because the sweetest memories always begin with cake.
+        </p>
+       <a href="#menu" class="cake-btn">Taste the Magic</a>
+
+
+    </div>
+    <div class="cake-image">
+         <img 
+        src="images/Cake1.png" 
+        alt="Delicious cake"
+        style="width: 666.1px; height: auto;"
+    >
+    </div>
+</section>
+
+    <!-- Our Story -->
+<section class="story animate" id="Our-Story">
+    <div class="story-content">
+        <h2>Our Story</h2>
+        <p>
+            From a simple sweet idea to a warm, welcoming bakery, our journey began with a deep love for cakes and the joy of celebrations.
+            What started as a passion soon became a place where moments are shared, smiles are created, and memories are baked fresh every day.
+            We believe every cake tells a story — of birthdays, surprises, togetherness, and little moments of happiness.
+            With careful hands and thoughtful hearts, we craft each creation to be as special as the occasion it’s made for.
+            Because for us, baking is more than a craft — it’s how we share love, one slice at a time.
+        </p>
+        <div class="story-highlights">
+            <span>🍰 Freshly Baked</span>
+            <span>🍫 Premium Ingredients</span>
+             <span>💖 Made with Love</span>
+        </div>
+
+    </div>
+    <div class="story-image">
+        <img src="images/story.png" alt="Our Cake Shop">
+    </div>
+</section>
+
+<section class="menu-style animate" id="menu">
+
+    <h2 class="menu-main-title">Our Lovely Menu</h2>
+    <p class="menu-subtitle">Freshly baked, thoughtfully priced💝</p>
+
+    <div class="menu-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="menu-column">
+
+            <!-- Cakes -->
+            <h3 class="menu-title">
+                <img src="images/cake-icon.png" alt="">
+                Cakes
+            </h3>
+
+            <ul class="menu-list">
+                <li><a href="products/cakes/red-velvet.html">Red Velvet Cake</a></li>
+                <li><a href="products/cakes/chocolate-truffle.html">Chocolate Truffle Cake</a></li>
+                <li><a href="products/cakes/black-forest.html">Black Forest Cake</a></li>
+                <li><a href="products/cakes/white-forest.html">White Forest Cake</a></li>
+                <li><a href="products/cakes/birthday.html">Custom Birthday Cakes</a></li>
+                <li><a href="products/cakes/wedding.html">Wedding Cakes</a></li>
+            </ul>
+
+            <!-- Desserts -->
+            <h3 class="menu-title">
+                <img src="images/dessert-icon.png" alt="">
+                Desserts
+            </h3>
+
+            <ul class="menu-list">
+                <li><a href="products/deserts/cupcakes.html">Cupcakes</a></li>
+                <li><a href="products/deserts/brownies-fudge.html">Brownies & Fudge</a></li>
+                <li><a href="products/deserts/cheesecake-slice.html">Cheesecake Slice</a></li>
+                <li><a href="products/deserts/tiramisu.html">Tiramisu</a></li>
+                <li><a href="products/deserts/mousse-cups.html">Mousse Cups</a></li>
+                <li><a href="products/deserts/lava-cake.html">Lava Cake</a></li>
+
+            </ul>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="menu-column">
+
+            <!-- Chocolate Treats -->
+            <h3 class="menu-title">
+                <img src="images/chocolate-icon.png" alt="">
+                Chocolate Treats
+            </h3>
+
+            <ul class="menu-list">
+                <li><a href="products/chocolates/handmade-chocolates.html">Handmade Chocolates</a></li>
+                <li><a href="products/chocolates/dark-milk-white.html">Dark / Milk / White Chocolates</a></li>
+                <li><a href="products/chocolates/chocolate-fudge.html">Chocolate Fudge</a></li>
+                <li><a href="products/chocolates/nutty-bars.html">Nutty Chocolate Bars</a></li>
+                <li><a href="products/chocolates/praline.html">Praline Chocolates</a></li>
+                <li><a href="products/chocolates/chocolate-strawberries.html">Chocolate Coated Strawberries</a></li>
+            </ul>
+
+            <!-- Drinks -->
+            <h3 class="menu-title">
+                <img src="images/drink-icon.png" alt="">
+                Drinks & Beverages
+            </h3>
+
+            <ul class="menu-list">
+                <li><a href="products/drinks/chocolate-milkshake.html">Chocolate Milkshake</a></li>
+                <li><a href="products/drinks/vanilla-milkshake.html">Vanilla Milkshake</a></li>
+                <li><a href="products/drinks/strawberry-milkshake.html">Strawberry Milkshake</a></li>
+                <li><a href="products/drinks/oreo-shake.html">Oreo Shake</a></li>
+                <li><a href="products/drinks/hot-chocolate.html">Hot Chocolate</a></li>
+                <li><a href="products/drinks/cappuccino.html">Cappuccino</a></li>
+                <li><a href="products/drinks/mojito.html">Mojito (Non-Alcoholic)</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="whatsapp-order">
+    <a href="https://wa.me/919876543210" target="_blank">
+        Order on WhatsApp💬
+    </a>
+</div>
+
+
+</section>
+
+<section class="best-seller animate" id="best">
+    <h2 class="best-title">Our Best Seller</h2>
+    <div class="best-subtitle">One Bite and You’ll Know Why❤️</div>
+
+    <div class="best-grid">
+        <div class="best">
+            <img src="images/choco truffle.png" alt="truffle">
+            <h3>Choco Truffle</h3>
+            <p>Rich, Smooth, and Irresistibly Chocolaty</p>
+        </div>
+
+        <div class="best">
+            <img src="images/oreo shake.png" alt="shake">
+            <h3>Oreo Shake</h3>
+            <p>A creamy swirl of love, sweetness, and stolen sips</p>
+        </div>
+
+        <div class="best">
+            <img src="images/coated strawberries.png" alt="strawberry">
+            <h3>Chocolate Coated Strawberries</h3>
+            <p>Juicy berries wrapped in chocolate, just like love wrapped in sweetness</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="gallery animate" id="Gallery">
+    <h2 class="gallery-title">Forever in Frames</h2>
+    <div class="gallery-subtitle">Snapshots that taste like sweetness, baked with love and served as memories 🍰</div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery1.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery2.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery3.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery4.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery5.png" alt="">
+        </div>
+
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery6.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery7.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery8.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery9.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery10.png" alt="">
+        </div>
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery11.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery12.png" alt="">
+        </div>
+
+        <div class="gallery-item">
+            <img src="images/Gallery/gallery13.png" alt="">
+        </div>
+    </div>
+    
+</section>
+
+<section class="review animate" id="Love-at-First-Bite">
+    <h2 class="review-title">Sweet Words, Loved by You</h2>
+    <div class="review-subtitle">Love written in frosting, soft and forever🫧♾️</div>
+
+    <div class="review-grid">
+        <div class="review-card">
+            <p class="review-text">“The cakes are incredibly soft and flavorful.  
+                One bite and I knew this place was special!”</p>
+                <h4 class="review-name">-Aravind</h4>
+        </div>
+
+        <div class="review-card">
+            <p class="review-text">“Ordered a birthday cake and it was beyond perfect.  
+                Beautiful design and amazing taste!”</p>
+                <h4 class="review-name">-Praveen</h4>
+        </div>
+
+        <div class="review-card">
+            <p class="review-text">“From desserts to drinks, everything feels made with love.  
+                Definitely my go-to cake shop now!”</p>
+                <h4 class="review-name">-Ramya</h4>
+        </div>
+    </div>
+
+</section>
+
+<!-- Contact Section -->
+<section class="contact animate" id="Contact">
+
+    <h2 class="contact-title">Get in Touch</h2>
+    <p class="contact-subtitle">
+        We’d love to bake something special for you 💕
+    </p>
+
+    <div class="contact-container">
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <h3>Contact Details</h3>
+
+            <p>📍 <strong>Address:</strong><br>
+               176 L.K.C Street,<br>
+               T-Nagar, Chennai,<br>
+               Tamil Nadu</p>
+
+            <p>📞 <strong>Phone:</strong><br>
+               +91 98765 43210</p>
+
+            <p>✉️ <strong>Email:</strong><br>
+               cakeshop@email.com</p>
+
+            <a href="https://wa.me/919876543210" target="_blank" class="whatsapp-btn">
+                Order on WhatsApp💬
+            </a>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+
+            <!-- <form id="contactForm"> -->
+                <form method="POST">
+                 <input type="text" name="name" id="name" placeholder="Your Name" required>
+                 <input type="email" name="email" id="email" placeholder="Your Email" required>
+                 <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit" name="submit">Send Message</button>
+
+            </form>
+                <!-- <a href="messages.html" class="cake-btn">View Messages</a> -->
+                 <a href="messages.php" class="cake-btn">View Messages</a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+  <div class="footer-top">
+
+    <!-- LEFT SIDE -->
+    <div class="footer-brand">
+      <h2>🎂 Cake Shop</h2>
+      <p>Baked with love, served with sweetness 💕</p>
+
+      <div class="footer-social">
+        <a href="#">📷</a>
+        <a href="#">📘</a>
+        <a href="#">▶️</a>
+        <a href="#">💼</a>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="footer-links">
+
+      <div>
+        <h3>About</h3>
+        <a href="#Our-Story">Our Story</a>
+        <a href="#Gallery">Gallery</a>
+        <a href="#Contact">Contact</a>
+      </div>
+
+      <div>
+        <h3>Menu</h3>
+        <a href="#menu">Cakes</a>
+        <a href="#menu">Desserts</a>
+        <a href="#menu">Drinks</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <p>📍 T-Nagar, Chennai</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ cakeshop@email.com</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+    <div class="footer-bottom-right">
+      © 2026 Cake Shop. All Rights Reserved.
+    </div>
+  </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html> 
