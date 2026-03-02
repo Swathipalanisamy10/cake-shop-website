@@ -12,7 +12,7 @@
 body {
     font-family: 'Playpen Sans', cursive;
     background-color: #fff7f3;
-    padding-top: 100px;
+    padding-top: 160px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -72,7 +72,7 @@ header {
 }
 
 section {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 170px;
 }
 
 .cake {
@@ -1059,3 +1059,45 @@ body.dark .nav-menu a.active {
   transform: translateY(0);
 }
 
+/* =========================
+   VIEW MESSAGES SECTION
+========================= */
+
+.view-messages {
+  padding: 100px 60px;
+  background-color: #fffaf6;
+  text-align: center;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.message-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.message-card h3 {
+  color: #8b3a3a;
+  margin-bottom: 10px;
+}
+
+.message-email {
+  font-size: 0.9rem;
+  color: #7a5c5c;
+  margin-bottom: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+}
